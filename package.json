@@ -1,9 +1,20 @@
 {
-  "name": "scratch",
+  "name": "starter",
   "version": "0.0.0",
+  "description": "An empty Protobase app to start from: auth, migrations and an empty config",
   "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protobase-community/starter.git"
+  },
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
+    "db:up": "test -f .env || cp .env.example .env; docker compose up -d --wait",
+    "db:down": "docker compose down",
     "db:migrate": "bun db/migrate.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -13,11 +24,11 @@
     "dev": "protobase dev"
   },
   "dependencies": {
-    "@protobase/cli": "workspace:*",
-    "@protobase/layout": "workspace:*",
-    "@protobase/schema": "workspace:*",
-    "@protobase/server": "workspace:*",
-    "@protobase/ui": "workspace:*",
+    "@protobase/cli": "0.45.9",
+    "@protobase/layout": "0.45.9",
+    "@protobase/schema": "0.45.9",
+    "@protobase/server": "0.45.9",
+    "@protobase/ui": "0.45.9",
     "better-auth": "^1.7.12",
     "jose": "^6.2.12",
     "kysely": "^0.29.6",
