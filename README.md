@@ -5,17 +5,6 @@ An empty Protobase app to build your own from: sign-in and accounts, the migrati
 its admin screens. New to Protobase? The [getting started](https://docs.protobase.net/getting-started/) guide and
 [From a table to an admin](https://docs.protobase.net/guides/table-to-admin/) walk through it.
 
-## Deploy on Protobase Cloud
-
-[Start in the cloud from scratch](https://admin.protobase.net/start?preset=scratch): sign up with GitHub or email, choose where its code
-goes (kept on Protobase, or a new private GitHub repository) and your workspace address. The app is created from this
-repository; its first published change deploys it. Protobase Cloud is in early access, with
-[plans](https://protobase.net/pricing) from €0.99 a month per app.
-
-Already have a workspace? In the [console](https://admin.protobase.net), press **New app** and pick **From scratch** under
-**Start from**. To deploy your own copy instead, made with **Use this template** below, pick
-**An existing GitHub repository**: Protobase keeps the app in sync with it and deploys every push.
-
 ## Run it locally
 
 You need [Bun](https://bun.sh) 1.4 and Docker.
