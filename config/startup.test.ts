@@ -1,13 +1,10 @@
-import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
-import { mergeConfig, type Authenticator, type ProjectConfig } from '@protobase/server'
+import { configExports, createAdmin, mergeConfig, type ProjectConfig } from '@protobase/server'
 
-// Protobase's own check that each example starts (packages/cli/src/project/examples-admin.test.ts in
-// github.com/PrototeamHQ/protobase), run here against the pinned release: the app's admin API built as `dev` and `serve`
-// build it, with its own auth, so a startup check such as an owner field that must hold the user ids refuses here
-// instead of on the app's first start. Building the API reaches no database. The CLI ships these modules without
-// types, so they are imported by a plain string.
-const cli = '@protobase/cli/dist/project/'
+// Protobase's own check that each example starts, run here against the pinned release through its public API: the
+// app's admin API built with createAdmin, as `dev` and `serve` build it, with its own auth, so a startup check such as
+// an owner field that must hold the user ids refuses here instead of on the app's first start. Building the API reaches
+// no database.
 
 describe('the app', () => {
   beforeAll(() => {
@@ -20,11 +17,23 @@ describe('the app', () => {
   })
 
   it('passes the startup checks with its own auth', async () => {
-    const { importProjectFile } = await import(`${cli}import-project-file.js`)
-    const { projectAdmin } = await import(`${cli}project-admin.js`)
-    const file = path.join(import.meta.dirname, '..', 'protobase.config.ts')
-    const project = mergeConfig(((await importProjectFile(file)).default ?? {}) as ProjectConfig)
+    const project = mergeConfig(((await import('../protobase.config')).default ?? {}) as ProjectConfig)
     expect(project.auth, 'the app signs in with Better Auth').toBeDefined()
-    expect(() => projectAdmin({ ...project, authenticate: project.authenticate as Authenticator }, project.config ?? {}, {} as never)).not.toThrow()
+    expect(project.authenticate, 'the app authenticates its requests').toBeDefined()
+    const { resources, views, pages, userMenu, bottomBars, subscriptions } = configExports(project.config ?? {})
+    const build = () =>
+      createAdmin({
+        resources,
+        views,
+        pages,
+        ...(userMenu && { userMenu }),
+        bottomBars,
+        subscriptions,
+        db: {} as never,
+        authenticate: project.authenticate!,
+        auth: project.auth,
+        options: project.options,
+      })
+    expect(build).not.toThrow()
   }, 60_000)
 })
