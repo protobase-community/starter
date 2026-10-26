@@ -19,7 +19,7 @@ bun run dev                       # http://localhost:5173
 bun run test
 ```
 
-Set your own `BETTER_AUTH_SECRET` in `.env` (`openssl rand -base64 32`). `bun run db:down` stops the database.
+Set your own `PROTOBASE_SECRET` in `.env` (`openssl rand -base64 32`). `bun run db:down` stops the database.
 
 ## Use it as a template
 
@@ -37,7 +37,7 @@ You can also fork it to contribute back, or start from it with `git clone https:
 
 Your first table, a list of customers for example:
 
-1. Write the migration `db/migrations/006_customers.sql`, numbered after the auth migrations, and run `bun run db:migrate`.
+1. Write the migration `db/migrations/007_customers.sql`, numbered after the auth migrations, and run `bun run db:migrate`.
 2. Run `bun run protobase scaffold <connection string> --ui` to write `config/customers/data.ts` and
    `config/customers/ui.ts` from the table, or write them yourself.
 3. Export them from `config/index.ts`: `export * from './customers/data'` and `export * from './customers/ui'`.
@@ -50,7 +50,7 @@ Your first table, a list of customers for example:
 - **Database changes.** Add a migration in `db/migrations/`, numbered after the last one, and run
   `bun run db:migrate`. Never edit a migration that has run. For a new table, `bun run protobase scaffold
   <connection string> --ui` reads the database and writes its `data.ts` and `ui.ts`, which you then adjust.
-- **Sign-in and accounts** are in `auth/`, on Better Auth ([Login](https://docs.protobase.net/reference/auth/)).
+- **Sign-in and accounts** are the `auth` of `protobase.config.ts`, on Better Auth ([Login](https://docs.protobase.net/reference/auth/)).
 - **Coding agents.** [AGENTS.md](AGENTS.md) holds the rules an assistant follows when it changes the app.
 - **Data from anywhere.** `test/locales.test.ts` checks that a first table like the customers above takes names,
   addresses, postal codes and phone numbers from many countries and scripts. Plain `f.text()` fields take them all; a
