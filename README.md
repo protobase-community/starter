@@ -13,6 +13,7 @@ You need [Bun](https://bun.sh) 1.4 and Docker.
 bun install
 bun run db:up                     # Postgres 18 in Docker on port 55432; creates .env from .env.example
 bun run db:migrate
+bun run protobase skill install   # gives Claude Code, Codex and other agents the Protobase docs of this version
 bun run protobase users create you@example.com --role admin --generate-password
 bun run dev                       # http://localhost:5173
 bun run test

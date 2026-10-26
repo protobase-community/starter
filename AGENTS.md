@@ -22,3 +22,5 @@ The platform runs `db:migrate` (the auth schema's migrations included), `typeche
 with their settings in the environment: keep them working. Before you finish, run `bun run typecheck`, `bun run test`
 and, after `bun run db:migrate`, `bun run doctor`: it checks the config against the database as the platform does
 before it deploys, such as the index each filterable or sortable field needs.
+
+`bun run protobase skill install` gives Claude Code, Codex and other agents the Protobase skill of this version.
