@@ -56,6 +56,12 @@ Your first table, a list of customers for example:
   `bun run doctor`, as CI does. Doctor checks the config against the database, such as the index each filterable or
   sortable field needs; Protobase Cloud runs it before it deploys.
 
+## Deploy it on Protobase Cloud
+
+Push your copy to GitHub, then in the [console](https://console.protobase.net) press **New app** and pick **An existing
+GitHub repository**. Protobase keeps the app in sync with the repository and deploys every push that passes
+`db:migrate`, `typecheck`, `test` and doctor. New to the cloud? [Start here](https://console.protobase.net/start).
+
 ## Built with Protobase
 
 [Protobase](https://github.com/PrototeamHQ/protobase) builds the app from a Postgres database and a typed config: each table's data config sits in
