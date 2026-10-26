@@ -5,11 +5,11 @@
     "": {
       "name": "starter",
       "dependencies": {
-        "@protobase/cli": "0.46.12",
-        "@protobase/layout": "0.46.12",
-        "@protobase/schema": "0.46.12",
-        "@protobase/server": "0.46.12",
-        "@protobase/ui": "0.46.12",
+        "@protobase/cli": "~0.46.12",
+        "@protobase/layout": "~0.46.12",
+        "@protobase/schema": "~0.46.12",
+        "@protobase/server": "~0.46.12",
+        "@protobase/ui": "~0.46.12",
         "better-auth": "^1.7.12",
         "jose": "^6.2.12",
         "kysely": "^0.29.6",
