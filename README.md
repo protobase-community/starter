@@ -51,7 +51,9 @@ Your first table, a list of customers for example:
   <connection string> --ui` reads the database and writes its `data.ts` and `ui.ts`, which you then adjust.
 - **Sign-in and accounts** are in `auth/`, on Better Auth ([Login](https://docs.protobase.net/reference/auth/)).
 - **Coding agents.** [AGENTS.md](AGENTS.md) holds the rules an assistant follows when it changes the app.
-- Check every change with `bun run typecheck`, `bun run test` and `bun run build`, as CI does.
+- Check every change with `bun run typecheck`, `bun run test`, `bun run build` and, after `bun run db:migrate`,
+  `bun run doctor`, as CI does. Doctor checks the config against the database, such as the index each filterable or
+  sortable field needs; Protobase Cloud runs it before it deploys.
 
 ## Built with Protobase
 
@@ -68,7 +70,8 @@ Your first table, a list of customers for example:
 
 ## Notes
 
-It has no resources, so `protobase doctor` refuses it until the first change adds one.
+It has no resources, so `protobase doctor` refuses it until the first change adds one; `bun run doctor` passes with
+nothing to check until then.
 
 ## Contributing
 

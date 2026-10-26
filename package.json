@@ -16,6 +16,7 @@
     "db:up": "test -f .env || cp .env.example .env; docker compose up -d --wait",
     "db:down": "docker compose down",
     "db:migrate": "bun db/migrate.ts",
+    "doctor": "bun db/doctor.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "protobase": "protobase",

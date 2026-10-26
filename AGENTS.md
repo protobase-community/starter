@@ -18,5 +18,7 @@ first change adds its first tables and resources.
 
 ## Scripts
 
-The platform runs `db:migrate` (the auth schema's migrations included), `typecheck` and `test`, with their settings in
-the environment: keep them working. Run `typecheck` and `test` before you finish.
+The platform runs `db:migrate` (the auth schema's migrations included), `typecheck`, `test` and `protobase doctor`,
+with their settings in the environment: keep them working. Before you finish, run `bun run typecheck`, `bun run test`
+and, after `bun run db:migrate`, `bun run doctor`: it checks the config against the database as the platform does
+before it deploys, such as the index each filterable or sortable field needs.
