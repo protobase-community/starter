@@ -77,7 +77,7 @@ GitHub repository**. Protobase keeps the app in sync with the repository and dep
   CLI's own copies, so a newer CLI within the range updates the app with no change to its files. `tsconfig.json`
   extends the `.protobase/tsconfig.json` that `protobase types` writes, so the editor types the CLI's copies too. A
   GitHub Action in this template (not in copies of it) moves the range to each new release and merges the move once
-  CI passes. To move a copy of your own outside the range, set the new range on each `@protobase/*` package, run `bun install`, then `bun run typecheck`,
+  CI passes. <gap>The bump cannot keep the caret range yet, writing `~<version>` instead, because the shared bump tool's caret specifier is not implemented.</gap> To move a copy of your own outside the range, set the new range on each `@protobase/*` package, run `bun install`, then `bun run typecheck`,
   `bun run test` and `bun run build`. The [release notes](https://github.com/PrototeamHQ/protobase/releases) say what changed.
   [Versioning](https://docs.protobase.net/reference/versioning/) says how bundled and locked apps differ.
 - Docs: [docs.protobase.net](https://docs.protobase.net). Source and issues: [PrototeamHQ/protobase](https://github.com/PrototeamHQ/protobase).
