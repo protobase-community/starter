@@ -8,4 +8,4 @@ export const databaseUrl = url
 export const connect = (options: postgres.Options<{}> = {}) => postgres(databaseUrl, { onnotice: () => {}, ...options })
 
 // The database name from DATABASE_URL.
-export const databaseName = () => databaseUrl.split('/')[3]
+export const databaseName = () => new URL(databaseUrl).pathname.slice(1)
