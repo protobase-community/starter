@@ -37,7 +37,7 @@ You can also fork it to contribute back, or start from it with `git clone https:
 
 Your first table, a list of customers for example:
 
-1. Write the migration `db/migrations/007_customers.sql`, numbered after the auth migrations, and run `bun run db:migrate`.
+1. Write the migration `db/migrations/008_customers.sql`, numbered after the auth migrations, and run `bun run db:migrate`.
 2. Run `bun run protobase scaffold <connection string> --ui` to write `config/customers/data.ts` and
    `config/customers/ui.ts` from the table, or write them yourself.
 3. Export them from `config/index.ts`: `export * from './customers/data'` and `export * from './customers/ui'`.
@@ -72,7 +72,7 @@ GitHub repository**. Protobase keeps the app in sync with the repository and dep
 `config/<name>/data.ts` and its screens in `config/<name>/ui.ts`, all exported from `config/index.ts`, and
 `protobase dev` and `protobase serve` serve the API and the app from them.
 
-- Tested with Protobase **0.66.6**, and CI runs against it. The app is bundled: the `@protobase/*` packages are dev
+- Tested with Protobase **0.111.1**, and CI runs against it. The app is bundled: the `@protobase/*` packages are dev
   dependencies in the caret range of that release, and dev, the build and the `db:*` scripts (`protobase run`) use the
   CLI's own copies, so a newer CLI within the range updates the app with no change to its files. `tsconfig.json`
   extends the `.protobase/tsconfig.json` that `protobase types` writes, so the editor types the CLI's copies too. To move a copy of your own outside the range, set the new range on each `@protobase/*` package, run `bun install`, then `bun run typecheck`,
