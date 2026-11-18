@@ -41,7 +41,8 @@ Your first table, a list of customers for example:
 2. Run `bun run protobase scaffold <connection string> --ui` to write `config/customers/data.ts` and
    `config/customers/ui.ts` from the table, or write them yourself.
 3. Export them from `config/index.ts`: `export * from './customers/data'` and `export * from './customers/ui'`.
-4. `bun run dev` shows the new list and record page.
+4. `bun run dev` shows the new list and record page to admins. Give members access in `config/roles.ts`, such as
+   `member: ['customers.read']`.
 
 - **Tables and screens.** Each table's data config is in `config/<name>/data.ts` (fields, validation, who may read
   and change what) and its screens in `config/<name>/ui.ts` (lists, filters, record pages), all exported from
@@ -51,6 +52,13 @@ Your first table, a list of customers for example:
   `bun run db:migrate`. Never edit a migration that has run. For a new table, `bun run protobase scaffold
   <connection string> --ui` reads the database and writes its `data.ts` and `ui.ts`, which you then adjust.
 - **Sign-in and accounts** are the `auth` of `protobase.config.ts`, on Better Auth ([Login](https://docs.protobase.net/reference/auth/)).
+- **Roles.** `admin` may do everything; `member` may do nothing but manage their own account until `config/roles.ts`
+  gives it capabilities, so a table you add stays closed to members until you list it there ([Access](https://docs.protobase.net/reference/access/)).
+- **Colleagues joining on their own.** Open sign-up is off. A host that sets `PROTOBASE_SIGN_UP_DOMAINS`, such as
+  `example.com`, turns it on for addresses at those domains: they make their own account, as `member`, after
+  confirming an emailed code. Without mail settings (`PROTOBASE_SMTP_URL`, `PROTOBASE_MAIL_FROM`) it stays off.
+  `test/sign-up.test.ts` checks this with `protobase dev` on a database of its own, made on the Postgres of
+  `DATABASE_URL` and dropped after; without a database it is skipped.
 - **Coding agents.** [AGENTS.md](AGENTS.md) holds the rules an assistant follows when it changes the app.
 - **Data from anywhere.** `test/locales.test.ts` checks that a first table like the customers above takes names,
   addresses, postal codes and phone numbers from many countries and scripts. Plain `f.text()` fields take them all; a

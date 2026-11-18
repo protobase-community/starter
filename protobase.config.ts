@@ -4,8 +4,11 @@ import { defineConfig } from '@protobase/config'
 // are Protobase's defaults, PROTOBASE_URL and PROTOBASE_SECRET (see .env.example).
 export default defineConfig({
   auth: {
-    // No defaultRole on purpose: every account is created with an explicit role (`protobase users create --role`).
-    roles: ['admin'],
+    // `member`, the role of an account made without one, holds no capability until config/roles.ts gives it some.
+    roles: ['admin', 'member'],
+    // Open sign-up, as `member`, for the email domains the host names in PROTOBASE_SIGN_UP_DOMAINS; the empty list
+    // keeps it off without them.
+    signUp: { role: 'member', domains: [] },
   },
   // Every user works in tenant 1, which access rules can compare with an organization_id column.
   authenticate: { tenant: 1 },
